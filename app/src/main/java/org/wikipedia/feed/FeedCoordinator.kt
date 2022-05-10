@@ -46,7 +46,10 @@ class FeedCoordinator internal constructor(context: Context) : FeedCoordinatorBa
                 Thread.sleep(delayMillis)
             }.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { cb.success(cards) }
+                .subscribe {
+                    println(cards)
+                    cb.success(cards)
+                }
         }
     }
 }
