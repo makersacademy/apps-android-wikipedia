@@ -1451,6 +1451,11 @@ class PageFragment : Fragment(), BackPressedHandler, CommunicationBridge.Communi
             articleInteractionEvent?.logCategoriesClick()
         }
 
+        override fun onCopyLinkSelected() {
+            ClipboardUtil.setPlainText(requireContext(), null, webView.url)
+            FeedbackUtil.showMessage(this@PageFragment, R.string.address_copied)
+        }
+
         override fun forwardClick() {
             goForward()
             articleInteractionEvent?.logForwardClick()
