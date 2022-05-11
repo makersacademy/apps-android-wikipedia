@@ -156,7 +156,7 @@ abstract class FeedCoordinatorBase(private val context: Context) {
     }
 
     fun requestOfflineCard() {
-        if (lastCard !is OfflineCard) {
+        if (lastCard !is OfflineCard && !isOfflineAlreadyIn()) {
             appendCard(OfflineCard())
         }
     }
@@ -181,7 +181,7 @@ abstract class FeedCoordinatorBase(private val context: Context) {
 
     private fun setOfflineState() {
         removeProgressCard()
-        appendCard(OfflineCard())
+        if(!isOfflineAlreadyIn()) appendCard(OfflineCard())
     }
 
     private fun removeAccessibilityCard() {
@@ -214,6 +214,13 @@ abstract class FeedCoordinatorBase(private val context: Context) {
                 L.w(caught)
             }
         }
+    }
+
+    private fun isOfflineAlreadyIn(): Boolean {
+        cards.forEach { card ->
+            if (card.type().name.equals("OFFLINE")) return true
+        }
+        return false
     }
 
     private fun appendCard(card: Card) {
