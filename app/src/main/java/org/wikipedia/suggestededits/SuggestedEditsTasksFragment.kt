@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.wikipedia.BuildConfig.BUILD_TYPE
 import org.wikipedia.Constants
 import org.wikipedia.R
 import org.wikipedia.WikipediaApp
@@ -220,7 +221,7 @@ class SuggestedEditsTasksFragment : Fragment() {
                         isPausedOrDisabled = true
                     }
 
-                    if (!isPausedOrDisabled && blockMessage.isNullOrEmpty()) {
+                    if (!isPausedOrDisabled && blockMessage.isNullOrEmpty()|| BUILD_TYPE=="debug") {
                         binding.pageViewStatsView.setTitle(it.toString())
                         totalPageviews = it
                         setFinalUIState()
