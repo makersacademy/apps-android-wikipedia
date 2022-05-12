@@ -154,6 +154,18 @@
             android:textColor="@android:color/white"
             android:text="@string/talk_add_reply" />
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/returnTopicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="16dp"
+            android:text="@string/talk_return_topic"
+            android:textColor="@android:color/white"
+            app:backgroundTint="?attr/colorAccent"
+            app:icon="@drawable/ic_reply_24"
+            app:iconTint="@android:color/white" />
+
     </FrameLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

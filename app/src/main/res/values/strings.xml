@@ -1145,6 +1145,7 @@
     <string name="talk_new_topic_submitted">Topic posted.</string>
     <string name="talk_page_empty">This talk page is empty.</string>
     <string name="talk_add_reply">Reply</string>
+    <string name="talk_return_topic">Return to topic</string>
     <string name="talk_no_subject">(No subject)</string>
     <string name="talk_reply_subject">Subject</string>
     <string name="talk_reply_hint">Compose response</string>
