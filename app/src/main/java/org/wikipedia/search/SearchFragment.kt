@@ -208,14 +208,14 @@ class SearchFragment : Fragment(), SearchResultsFragment.Callback, RecentSearche
         binding.searchCabView.setQuery(text, false)
     }
 
-    override fun navigateToTitle(item: PageTitle, inNewTab: Boolean, position: Int) {
+    override fun navigateToTitle(item: PageTitle, inNewTab: Boolean, position: Int, redirectFrom: String?) {
         if (!isAdded) {
             return
         }
         funnel.searchClick(position, searchLanguageCode)
         val historyEntry = HistoryEntry(item, HistoryEntry.SOURCE_SEARCH)
         startActivity(if (inNewTab) PageActivity.newIntentForNewTab(requireContext(), historyEntry, historyEntry.title)
-        else PageActivity.newIntentForCurrentTab(requireContext(), historyEntry, historyEntry.title, false))
+        else PageActivity.newIntentForCurrentTab(requireContext(), historyEntry, historyEntry.title, false, redirectFrom))
         closeSearch()
     }
 

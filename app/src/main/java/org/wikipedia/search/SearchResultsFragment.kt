@@ -46,7 +46,7 @@ class SearchResultsFragment : Fragment() {
         fun onSearchAddPageToList(entry: HistoryEntry, addToDefault: Boolean)
         fun onSearchMovePageToList(sourceReadingListId: Long, entry: HistoryEntry)
         fun onSearchProgressBar(enabled: Boolean)
-        fun navigateToTitle(item: PageTitle, inNewTab: Boolean, position: Int)
+        fun navigateToTitle(item: PageTitle, inNewTab: Boolean, position: Int, redirectFrom: String?)
         fun setSearchText(text: CharSequence)
         fun getFunnel(): SearchFunnel
     }
@@ -357,11 +357,12 @@ class SearchResultsFragment : Fragment() {
 
     private inner class SearchResultsFragmentLongPressHandler(private val lastPositionRequested: Int) : LongPressMenu.Callback {
         override fun onOpenLink(entry: HistoryEntry) {
-            callback()?.navigateToTitle(entry.title, false, lastPositionRequested)
+            callback()?.navigateToTitle(entry.title, false, lastPositionRequested, "")
         }
 
         override fun onOpenInNewTab(entry: HistoryEntry) {
-            callback()?.navigateToTitle(entry.title, true, lastPositionRequested)
+            callback()?.navigateToTitle(entry.title, true, lastPositionRequested, ""
+            )
         }
 
         override fun onAddRequest(entry: HistoryEntry, addToDefault: Boolean) {
@@ -474,7 +475,7 @@ class SearchResultsFragment : Fragment() {
             view.isLongClickable = true
             view.setOnClickListener {
                 if (position < totalResults.size) {
-                    callback()?.navigateToTitle(totalResults[position].pageTitle, false, position)
+                    callback()?.navigateToTitle(totalResults[position].pageTitle, false, position, redirectFrom)
                 }
             }
             view.setOnCreateContextMenuListener(LongPressHandler(view,

@@ -285,6 +285,8 @@ class PageFragment : Fragment(), BackPressedHandler, CommunicationBridge.Communi
         binding.pageActionsTabLayout.update()
         updateQuickActionsAndMenuOptions()
         articleInteractionEvent?.resume()
+        val redirected = activity?.intent?.getStringExtra("redirectedFrom")
+        if (!redirected.isNullOrEmpty()) FeedbackUtil.showMessage(this, "Redirected from $redirected")
     }
 
     fun getPageActionTabLayout(): PageActionTabLayout {
@@ -747,6 +749,7 @@ class PageFragment : Fragment(), BackPressedHandler, CommunicationBridge.Communi
             bridge.onPcsReady()
             articleInteractionEvent?.logLoaded()
             callback()?.onPageLoadComplete()
+            // FeedbackUtil.showMessage(this, "Redirected.")
 
             // do we have a URL fragment to scroll to?
             model.title?.let { prevTitle ->
