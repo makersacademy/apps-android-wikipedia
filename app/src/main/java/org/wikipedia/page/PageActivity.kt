@@ -780,6 +780,7 @@ class PageActivity : BaseActivity(), PageFragment.Callback, LinkPreviewDialog.Ca
         const val ACTION_RESUME_READING = "org.wikipedia.resume_reading"
         const val EXTRA_PAGETITLE = "org.wikipedia.pagetitle"
         const val EXTRA_HISTORYENTRY = "org.wikipedia.history.historyentry"
+        const val EXTRA_REDIRECTED_FROM = "redirectedFrom"
 
         fun newIntent(context: Context): Intent {
             return Intent(ACTION_RESUME_READING).setClass(context, PageActivity::class.java)
@@ -796,11 +797,12 @@ class PageActivity : BaseActivity(), PageFragment.Callback, LinkPreviewDialog.Ca
                 .putExtra(EXTRA_PAGETITLE, title)
         }
 
-        fun newIntentForCurrentTab(context: Context, entry: HistoryEntry, title: PageTitle, squashBackstack: Boolean = true): Intent {
+        fun newIntentForCurrentTab(context: Context, entry: HistoryEntry, title: PageTitle, squashBackstack: Boolean = true, redirectedFrom: String? = ""): Intent {
             return Intent(if (squashBackstack) ACTION_LOAD_IN_CURRENT_TAB_SQUASH else ACTION_LOAD_IN_CURRENT_TAB)
                 .setClass(context, PageActivity::class.java)
                 .putExtra(EXTRA_HISTORYENTRY, entry)
                 .putExtra(EXTRA_PAGETITLE, title)
+                .putExtra(EXTRA_REDIRECTED_FROM, redirectedFrom)
         }
 
         fun newIntentForExistingTab(context: Context, entry: HistoryEntry, title: PageTitle): Intent {

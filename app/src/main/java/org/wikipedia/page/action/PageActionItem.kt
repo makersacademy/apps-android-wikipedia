@@ -71,6 +71,11 @@ enum class PageActionItem constructor(val id: Int,
         override fun select(cb: Callback) {
             cb.onCategoriesSelected()
         }
+    },
+    COPY_LINK(12, R.string.menu_long_press_copy_page, R.drawable.ic_link_black_24dp) {
+        override fun select(cb: Callback) {
+            cb.onCopyLinkSelected()
+        }
     };
 
     abstract fun select(cb: Callback)
@@ -94,6 +99,7 @@ enum class PageActionItem constructor(val id: Int,
         fun onNewTabSelected()
         fun onExploreSelected()
         fun onCategoriesSelected()
+        fun onCopyLinkSelected()
         fun forwardClick()
     }
 
